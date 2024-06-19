@@ -18,6 +18,11 @@
    - Constructor
    - Prototype
 
+#### FACTORY
+#### SINGLETON
+- An object that can only be instantiated once
+
+
 
 
 
