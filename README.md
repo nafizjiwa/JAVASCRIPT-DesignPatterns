@@ -6,9 +6,9 @@
 - Patterns are blueprints to solving a particular design problem in your code using objects and classes.
 - `3 Pattern Categories:` <br>
 
-                          1. Creational - how objects are created
-                          2. Structural - how objects relate to each other
-                          3. Behavioral patterns.- how objects communicate with each other
+       1. Creational - how objects are created
+       2. Structural - how objects relate to each other
+       3. Behavioral patterns.- how objects communicate with each other
 
 ### Creational Design Patterns
  - Different ways to create objects.
