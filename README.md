@@ -4,7 +4,8 @@
 - Provide clean, scalable, and maintainable code
 - Code solutions to common problems in software design.
 - Patterns are blueprints to solving a particular design problem in your code using objects and classes.
-- `3 Pattern Categories:` 1. Creational - how objects are created
+- `3 Pattern Categories:` <br>
+                          1. Creational - how objects are created
                           2. Structural - how objects relate to each other
                           3. Behavioral patterns.- how objects communicate with each other
 
