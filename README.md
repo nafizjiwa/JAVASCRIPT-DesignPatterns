@@ -22,7 +22,7 @@
 - We don't use the `new` keyword to instantiate an object but a function or method.
 - The Functions use a predefined template to return an object with properties and methods. The arguments construct the object.
 ###### - EG.
-         function createBook(title, author, read = false) {
+         function createBook(title, author, read = false) {    //creates a book object with these properties
            return {
                       title: title,
                       author: author,
@@ -86,7 +86,7 @@
   
 #### PROXY
 - Protects access to an object by acting as a placeholder
-- It intercepts and redefines the operations of the target object.
+- It intercepts and redefines operations of the target object.
 - Useful in Network requests so it avoids redundant requests
 - Proxy objects have built-in handler function objects, which are called traps.
 - Traps modify access to the target object.
@@ -186,6 +186,63 @@
               
               console.log(b); 
               // Account { followers: [], feed: [ 'Hello, world' ] }
+
+
+#### Mediator Pattern
+- Acts as a central interface to coordinate and communicate how your codebase interacts with each other. (like a airport tower to planes)
+- Rideshare app communicate to different parts
+
+              class Passenger {
+                  constructor(name) {
+                    this.name = name;
+                  }
+                  sendRequest(rideshareapp) {
+                    rideshareapp.receiveRequest(this.name);
+                  }
+              }
+
+              class Driver {
+                  constructor(name) {
+                      this.name = name;
+                  }
+                  goOnline(rideshareapp) {
+                      rideshareapp.addDriver(this.name);
+                  }
+              }
+
+              class RideshareApp {
+                  constructor() {
+                    this.drivers = [];
+                    this.riders = [];
+                  }
+                  addDriver(name) {
+                      this.drivers.push(name);
+                  }
+                  updateDriverArray(name) {
+                      this.drivers.splice(this.drivers.indexOf(name), 1);
+                  }
+                  assignDriver() {
+                      // We will assume there are always more drivers than riders
+                      return this.drivers[Math.floor(Math.random(this.drivers.length))].name;
+                  }
+                  receiveRequest(passenger) {
+                      const driver = this.assignDriver();
+                      console.log(driver);
+                      this.sendNotification(passenger, driver);
+                      this.updateDriverArray(driver);
+                  }
+                  sendNotification(passenger, driver) {
+                      console.log(`${driver} is assigned to ${passenger}.`)
+                  }
+              }
+
+                            const rideshareapp = new RideshareApp();
+                            
+                            const james = new Passenger("James");
+                            const sarah = new Driver("Sarah");
+                            
+                            rideshareapp.addDriver(sarah);
+                            james.sendRequest(rideshareapp);
 
 ## Anti Patterns
 Some common anti-patterns include:
