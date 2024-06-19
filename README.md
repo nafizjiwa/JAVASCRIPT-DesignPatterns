@@ -6,9 +6,9 @@
 - Patterns are blueprints to solving a particular design problem in your code using objects and classes.
 - `3 Pattern Categories:` <br>
 
-       1. Creational - how objects are created
-       2. Structural - how objects relate to each other
-       3. Behavioral patterns.- how objects communicate with each other
+       1. CREATIONAL PATTERNS - how objects are created
+       2. STRUCTURAL PATTERNS - how objects interac with each other
+       3. BEHAVIORAL PATTERNS - how objects communicate with each other
 
 ### CREATIONAL DESIGN PATTERNS
  - Use these Pattern to control how objects are created
@@ -75,8 +75,117 @@
 
 
 ### STRUCTURAL DESIGN PATTERNS
+- Common Patterns:
+       - Facade
+       - Proxy
+       - Flyweight
+       - Adapter
+       - Decorator
+       - Composite
+       - Bridge
+  
+#### PROXY
+- Protects access to an object by acting as a placeholder
+- It intercepts and redefines the operations of the target object.
+- Useful in Network requests so it avoids redundant requests
+- Proxy objects have built-in handler function objects, which are called traps.
+- Traps modify access to the target object.
+  
+              const target = {
+                  city1: "Marseille, France",
+                  city2: "Mombasa, Kenya"
+              };
+              
+              const handler = {
+                  get: function (target, prop, receiver) {
+                      if (prop === "city1") {
+                          return "Montreal, Canada";
+                      }
+                      return Reflect.get(...arguments);
+                  },
+              };
 
+              const proxy = new Proxy(target, handler);
+              
+              console.log(proxy.city1); // Montreal, Canada
+              console.log(proxy.city2); // Mombasa, Kenya
 
+#### FACADE
+- Used in libraries to simplify interactions with APIs.
+- It directs clients requests and hides low level code from user
+  
+              class VideoConverter {   //client only interacts with VideoConverter class
+                  constructor() {}
+                      convertNewVideo(...args) {
+                      // This method can interact with `Audio`, `Video`, `Codec`, and `Compression`
+                  }
+              }
+
+              class Audio {
+                  constructor() {}
+                  // complex subsystem code
+              }
+              
+              class Video {
+                  constructor() {}
+                  // complex subsystem code
+              }
+              
+              class Codec {
+                  constructor() {}
+                  // complex subsystem code
+              }
+
+### BEHAVIORAL DESIGN PATTERNS
+- Decides how sender and receiver objects communicate with each other.
+- Common Patterns:
+       - Iterator
+       - Mediator
+       - Observer
+       - Visitor
+
+#### Observer Pattern
+- A change in one object can affect the changes in many other objects
+- Eg. Changing my Bday on one account but the change is made/pushed to many other accounts.
+
+              class Account {
+                  constructor() {
+                      this.followers = [];
+                      this.feed = [];
+                  }
+                  addToFollowers(follower) {
+                      this.followers.push(follower);
+                  }
+                  removeFromFollowers(follower) {
+                      this.followers.splice(this.followers.indexOf(follower), 1);
+                  }
+                  publish(post) {
+                      this.followers.forEach(follower => follower.update(post));
+                  }
+                  update(post) {
+                    this.feed.push(post);
+                  }
+              }
+
+       let a = new Account();
+       let b = new Account();
+       let c = new Account();
+       
+       a.addToFollowers(b);
+       a.addToFollowers(c);
+       
+       a.publish("Hello, world");
+
+              console.log(a);   
+              /* Output shows b and c objects listed in a's followers array:
+              [
+                Account { followers: [], feed: [ 'Hello, world' ] },
+                Account { followers: [], feed: [ 'Hello, world' ] }
+              ] 
+              */
+              
+              console.log(b); 
+              // Account { followers: [], feed: [ 'Hello, world' ] }
 
 ## Anti Patterns
 Some common anti-patterns include:
