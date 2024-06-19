@@ -19,8 +19,43 @@
    - Prototype
 
 #### FACTORY
+- We don't use the `new` keyword to instantiate an object but a function or method.
+- The Functions use a predefined template to return an object with properties and methods. The arguments construct the object.
+###### - EG.
+         function createBook(title, author, read = false) {
+           return {
+                      title: title,
+                      author: author,
+                      read: read,
+           getDescription() {
+                 console.log(`${this.title} was written by ${this.author}. I ${this.read ? "have" : "have not"} read it.`);
+                   },
+           readBook() {
+               this.read = true;
+                },
+             }
+          }
+          
+          const beloved = createBook("Beloved", "Toni Morrison");
+          console.log(beloved);              /*
+                                              {
+                                              title: 'Beloved',
+                                              author: 'Toni Morrison',
+                                              read: false,
+                                              getDescription: [Function: getDescription],
+                                              readBook: [Function: readBook]
+                                              }
+                                             */
+              
+           // call the `.readBook()` method
+              beloved.readBook();          // read is updated to true
+              
+           // modifies the property directly
+              beloved.title = "I can change the property." 
+
 #### SINGLETON
-- An object that can only be instantiated once
+- An object that can only be instantiated once<br>
+
 
 
 
