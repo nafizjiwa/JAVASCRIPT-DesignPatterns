@@ -10,7 +10,7 @@
        2. Structural - how objects relate to each other
        3. Behavioral patterns.- how objects communicate with each other
 
-### Creational Design Patterns
+### CREATIONAL DESIGN PATTERNS
  - Use these Pattern to control how objects are created
    - Factory
    - Singleton
@@ -55,9 +55,26 @@
 
 #### SINGLETON
 - An object that can only be instantiated once<br>
+- 1st a method checks if an instance exists, and if not
+- 2nd return a new object.
+  
+                class Singleton {
+                   constructor() {
+                       if (!Singleton.instance) {
+                           Singleton.instance = this;
+                       }
+                       return Singleton.instance;
+                     }
+                   static getInstance() {
+                        return this.instance;
+                    }
+                }
+                     
+                     const instance = new Singleton();
+                     console.log(Singleton.getInstance());    // logs "Singleton {}"
 
 
-
+### STRUCTURAL DESIGN PATTERNS
 
 
 
